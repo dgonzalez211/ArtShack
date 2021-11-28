@@ -1,9 +1,9 @@
 import '../backend/backend.dart';
-import '../chat_main/chat_main_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,7 +38,7 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
                 type: PageTransitionType.leftToRight,
                 duration: Duration(milliseconds: 200),
                 reverseDuration: Duration(milliseconds: 200),
-                child: ChatMainWidget(),
+                child: NavBarPage(initialPage: 'chatMain'),
               ),
             );
           },

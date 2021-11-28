@@ -115,7 +115,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                     isScrollable: true,
                     labelColor: Color(0xFF4B39EF),
                     unselectedLabelColor: Color(0xFF95A1AC),
-                    labelStyle: TextStyle(),
+                    labelStyle: GoogleFonts.getFont(
+                      'Roboto',
+                    ),
                     indicatorColor: Color(0xFF4B39EF),
                     indicatorWeight: 3,
                     tabs: [

@@ -10,6 +10,7 @@ import 'package:art_shack/login/login_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'main_screen/main_screen_widget.dart';
 import 'my_profile/my_profile_widget.dart';
+import 'chat_main/chat_main_widget.dart';
 import 'app_settings/app_settings_widget.dart';
 
 void main() async {
@@ -95,6 +96,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'mainScreen': MainScreenWidget(),
       'myProfile': MyProfileWidget(),
+      'chatMain': ChatMainWidget(),
       'appSettings': AppSettingsWidget(),
     };
     return Scaffold(
@@ -106,7 +108,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.home_rounded,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Inicio',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -119,6 +121,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: '',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat_bubble,
+              size: 24,
+            ),
+            label: 'Chats',
             tooltip: '',
           ),
           BottomNavigationBarItem(

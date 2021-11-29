@@ -3,6 +3,8 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'users_record.dart';
 import 'chats_record.dart';
 import 'chat_messages_record.dart';
+import 'social_posts_record.dart';
+import 'location_posts_record.dart';
 
 import 'index.dart';
 
@@ -16,6 +18,8 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   UsersRecord,
   ChatsRecord,
   ChatMessagesRecord,
+  SocialPostsRecord,
+  LocationPostsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

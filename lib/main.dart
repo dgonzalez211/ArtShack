@@ -120,7 +120,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.account_circle_rounded,
               size: 24,
             ),
-            label: '',
+            label: 'Perfil',
             tooltip: '',
           ),
           BottomNavigationBarItem(

@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_place_picker.dart';
@@ -7,6 +9,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import '../flutter_flow/upload_media.dart';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -224,8 +227,23 @@ class _MakePostWidgetState extends State<MakePostWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: FFButtonWidget(
-              onPressed: () {
-                print('Button pressed ...');
+              onPressed: () async {
+                setState(() => _loadingButton = true);
+                try {
+                  final socialPostsCreateData = createSocialPostsRecordData(
+                    postCreated: getCurrentTimestamp,
+                    postImage: uploadedFileUrl,
+                    postDescription: textController.text,
+                    postUserImage: currentUserPhoto,
+                    postUser: currentUserReference,
+                  );
+                  await SocialPostsRecord.collection
+                      .doc()
+                      .set(socialPostsCreateData);
+                  Navigator.pop(context);
+                } finally {
+                  setState(() => _loadingButton = false);
+                }
               },
               text: 'Publicar',
               options: FFButtonOptions(
@@ -243,7 +261,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                   color: Colors.transparent,
                   width: 1,
                 ),
-                borderRadius: 8,
+                borderRadius: 15,
               ),
               loading: _loadingButton,
             ),

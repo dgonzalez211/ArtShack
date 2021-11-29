@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>221285397671-ts8o319tn4m9mu2qu5q98lvc7520rngf.apps.googleusercontent.com</string>
+	<string>1006961113403-3n04nenr05h40jdme50dsu62jnhvhkqa.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.221285397671-ts8o319tn4m9mu2qu5q98lvc7520rngf</string>
+	<string>com.googleusercontent.apps.1006961113403-3n04nenr05h40jdme50dsu62jnhvhkqa</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAqowKSlbS1rfrJrHhU52XIzfPbp8peqFU</string>
+	<string>AIzaSyAh5bIsHa9DEwRZPS2NLokt5pWcxsm1yfE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>221285397671</string>
+	<string>1006961113403</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>KaleoChatApp</string>
+	<string>Kaleo.Chat.app</string>
 	<key>PROJECT_ID</key>
-	<string>chatapp-1f872</string>
+	<string>artshack-d74f4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>chatapp-1f872.appspot.com</string>
+	<string>artshack-d74f4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:221285397671:ios:94fe90da56c20747b6d782</string>
+	<string>1:1006961113403:ios:c1cad508ede72629c7df1e</string>
 </dict>
 </plist>

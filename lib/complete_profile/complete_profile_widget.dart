@@ -38,13 +38,13 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.primaryColor,
         automaticallyImplyLeading: false,
         title: Text(
           'Completar perfil',
           style: FlutterFlowTheme.title2.override(
             fontFamily: 'Lexend Deca',
-            color: FlutterFlowTheme.background,
+            color: Colors.white,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
@@ -59,12 +59,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
           color: Colors.white,
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: Image.asset(
-              'assets/images/User_Frame.png',
-            ).image,
-          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -98,14 +92,14 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     }
                   },
                   child: Container(
-                    width: 80,
-                    height: 80,
+                    width: 100,
+                    height: 100,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     child: Image.asset(
-                      'assets/images/uiAvatar@2x.png',
+                      'assets/images/add_profile_photo.png',
                     ),
                   ),
                 ),
@@ -146,7 +140,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  fillColor: FlutterFlowTheme.background,
+                  fillColor: FlutterFlowTheme.grayIcon,
                   contentPadding:
                       EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                 ),
@@ -194,7 +188,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  fillColor: FlutterFlowTheme.background,
+                  fillColor: FlutterFlowTheme.grayIcon,
                   contentPadding:
                       EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                 ),
@@ -242,7 +236,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   filled: true,
-                  fillColor: FlutterFlowTheme.background,
+                  fillColor: FlutterFlowTheme.grayIcon,
                   contentPadding:
                       EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                 ),
@@ -274,7 +268,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            NavBarPage(initialPage: 'chatMain'),
+                            NavBarPage(initialPage: 'mainScreen'),
                       ),
                     );
                   } finally {

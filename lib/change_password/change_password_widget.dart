@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordWidget extends StatefulWidget {
-  ChangePasswordWidget({Key key}) : super(key: key);
+  const ChangePasswordWidget({Key key}) : super(key: key);
 
   @override
   _ChangePasswordWidgetState createState() => _ChangePasswordWidgetState();

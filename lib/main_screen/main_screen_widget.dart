@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainScreenWidget extends StatefulWidget {
-  MainScreenWidget({Key key}) : super(key: key);
+  const MainScreenWidget({Key key}) : super(key: key);
 
   @override
   _MainScreenWidgetState createState() => _MainScreenWidgetState();

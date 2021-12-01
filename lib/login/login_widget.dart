@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginWidget extends StatefulWidget {
-  LoginWidget({Key key}) : super(key: key);
+  const LoginWidget({Key key}) : super(key: key);
 
   @override
   _LoginWidgetState createState() => _LoginWidgetState();

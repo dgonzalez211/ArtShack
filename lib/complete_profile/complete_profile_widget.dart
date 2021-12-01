@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CompleteProfileWidget extends StatefulWidget {
-  CompleteProfileWidget({Key key}) : super(key: key);
+  const CompleteProfileWidget({Key key}) : super(key: key);
 
   @override
   _CompleteProfileWidgetState createState() => _CompleteProfileWidgetState();
@@ -111,14 +111,14 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                 controller: imageURLController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Image URL',
+                  labelText: 'URL de tu avatar',
                   labelStyle: FlutterFlowTheme.bodyText1.override(
                     fontFamily: 'Lexend Deca',
                     color: Color(0x98FFFFFF),
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
-                  hintText: 'Copy an avatar here...',
+                  hintText: 'Introudce la URL de tu avatar aqui',
                   hintStyle: FlutterFlowTheme.bodyText1.override(
                     fontFamily: 'Lexend Deca',
                     color: Color(0x98FFFFFF),
@@ -159,7 +159,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                 controller: displayNameController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Name',
+                  labelText: 'Tu nombre completo',
                   labelStyle: FlutterFlowTheme.bodyText1.override(
                     fontFamily: 'Lexend Deca',
                     color: Color(0x98FFFFFF),
@@ -207,7 +207,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                 controller: yourTitleController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Title',
+                  labelText: 'Tu nickname',
                   labelStyle: FlutterFlowTheme.bodyText1.override(
                     fontFamily: 'Lexend Deca',
                     color: Color(0x98FFFFFF),
@@ -246,7 +246,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
-                keyboardType: TextInputType.emailAddress,
               ),
             ),
             Padding(
@@ -275,7 +274,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                     setState(() => _loadingButton = false);
                   }
                 },
-                text: 'Save Profile',
+                text: 'Guardar',
                 options: FFButtonOptions(
                   width: 230,
                   height: 60,

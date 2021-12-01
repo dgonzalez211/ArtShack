@@ -22,7 +22,8 @@ class FlutterFlowIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius:
+            borderRadius != null ? BorderRadius.circular(borderRadius) : null,
         color: Colors.transparent,
         clipBehavior: Clip.antiAlias,
         child: Ink(
@@ -34,7 +35,9 @@ class FlutterFlowIconButton extends StatelessWidget {
               color: borderColor ?? Colors.transparent,
               width: borderWidth ?? 0,
             ),
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: borderRadius != null
+                ? BorderRadius.circular(borderRadius)
+                : null,
           ),
           child: IconButton(
             icon: icon,

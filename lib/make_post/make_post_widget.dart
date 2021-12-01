@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MakePostWidget extends StatefulWidget {
-  MakePostWidget({Key key}) : super(key: key);
+  const MakePostWidget({Key key}) : super(key: key);
 
   @override
   _MakePostWidgetState createState() => _MakePostWidgetState();

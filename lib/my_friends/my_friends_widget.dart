@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyFriendsWidget extends StatefulWidget {
-  MyFriendsWidget({Key key}) : super(key: key);
+  const MyFriendsWidget({Key key}) : super(key: key);
 
   @override
   _MyFriendsWidgetState createState() => _MyFriendsWidgetState();
@@ -25,7 +25,7 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
         backgroundColor: FlutterFlowTheme.primaryColor,
         automaticallyImplyLeading: false,
         title: Text(
-          'Contactos',
+          'Usuarios',
           style: FlutterFlowTheme.title1,
         ),
         actions: [

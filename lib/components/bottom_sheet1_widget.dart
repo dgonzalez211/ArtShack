@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BottomSheet1Widget extends StatefulWidget {
-  BottomSheet1Widget({Key key}) : super(key: key);
+  const BottomSheet1Widget({Key key}) : super(key: key);
 
   @override
   _BottomSheet1WidgetState createState() => _BottomSheet1WidgetState();

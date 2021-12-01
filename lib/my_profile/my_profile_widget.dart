@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyProfileWidget extends StatefulWidget {
-  MyProfileWidget({Key key}) : super(key: key);
+  const MyProfileWidget({Key key}) : super(key: key);
 
   @override
   _MyProfileWidgetState createState() => _MyProfileWidgetState();
@@ -218,7 +218,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
-                                  color: FlutterFlowTheme.dark900,
+                                  color: Color(0x00090F13),
                                   offset: Offset(0, 1),
                                 )
                               ],
@@ -280,12 +280,15 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               setState(() => _loadingButton = true);
                               try {
                                 await signOut();
-                                await Navigator.pushAndRemoveUntil(
+                                await Navigator.push(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginWidget(),
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 300),
+                                    reverseDuration:
+                                        Duration(milliseconds: 300),
+                                    child: LoginWidget(),
                                   ),
-                                  (r) => false,
                                 );
                               } finally {
                                 setState(() => _loadingButton = false);

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterWidget extends StatefulWidget {
-  RegisterWidget({Key key}) : super(key: key);
+  const RegisterWidget({Key key}) : super(key: key);
 
   @override
   _RegisterWidgetState createState() => _RegisterWidgetState();
@@ -137,7 +137,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: Colors.black,
                           ),
                           keyboardType: TextInputType.name,
                         ),
@@ -155,11 +155,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: emailAddressController2,
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'user@domain.com',
-                            hintStyle: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xCF5E5E5E),
-                            ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0xFF594EC4),
@@ -183,7 +178,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: Color(0xCF5E5E5E),
+                            color: Colors.black,
                           ),
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -201,8 +196,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           controller: passwordController,
                           obscureText: !passwordVisibility,
                           decoration: InputDecoration(
-                            labelText: '*********',
-                            labelStyle: FlutterFlowTheme.bodyText1,
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0xFF594EC4),
@@ -238,7 +231,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -294,7 +287,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.tertiaryColor,
+                            color: Colors.black,
                           ),
                         ),
                       )

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfileWidget extends StatefulWidget {
-  EditProfileWidget({
+  const EditProfileWidget({
     Key key,
     this.userEmail,
     this.userDisplay,

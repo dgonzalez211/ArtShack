@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FriendListWidget extends StatefulWidget {
-  FriendListWidget({Key key}) : super(key: key);
+  const FriendListWidget({Key key}) : super(key: key);
 
   @override
   _FriendListWidgetState createState() => _FriendListWidgetState();

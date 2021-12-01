@@ -226,7 +226,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                         Radius.circular(8),
                                                   ),
                                                   child: Image.network(
-                                                    'https://picsum.photos/seed/400/600',
+                                                    columnSocialPostsRecord
+                                                        .postImage,
                                                     width:
                                                         MediaQuery.of(context)
                                                             .size
@@ -252,8 +253,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
-                                                        child: Image.asset(
-                                                          'assets/images/user_2@2x.png',
+                                                        child: Image.network(
+                                                          columnSocialPostsRecord
+                                                              .postUserImage,
                                                         ),
                                                       ),
                                                       Padding(
@@ -427,8 +429,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
-                                                      child: Image.asset(
-                                                        'assets/images/user_2@2x.png',
+                                                      child: Image.network(
+                                                        columnLocationPostsRecord
+                                                            .postUserImage,
                                                       ),
                                                     ),
                                                     Padding(
@@ -437,7 +440,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                               .fromSTEB(
                                                                   12, 0, 0, 0),
                                                       child: Text(
-                                                        'userName',
+                                                        mainScreenUsersRecord
+                                                            .displayName,
                                                         style: FlutterFlowTheme
                                                             .subtitle1
                                                             .override(
@@ -457,7 +461,10 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                               .fromSTEB(
                                                                   4, 0, 0, 0),
                                                       child: Text(
-                                                        '2h',
+                                                        dateTimeFormat(
+                                                            'relative',
+                                                            columnLocationPostsRecord
+                                                                .postCreated),
                                                         style: FlutterFlowTheme
                                                             .bodyText2
                                                             .override(

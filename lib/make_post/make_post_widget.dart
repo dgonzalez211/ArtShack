@@ -196,9 +196,10 @@ class _MakePostWidgetState extends State<MakePostWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
             child: FlutterFlowPlacePicker(
-              iOSGoogleMapsApiKey: '',
-              androidGoogleMapsApiKey: '',
-              webGoogleMapsApiKey: '',
+              iOSGoogleMapsApiKey: 'AIzaSyAh5bIsHa9DEwRZPS2NLokt5pWcxsm1yfE',
+              androidGoogleMapsApiKey:
+                  'AIzaSyBVtJLkes0trsNZa0c1PAxQC2AG-k7AD7k',
+              webGoogleMapsApiKey: 'AIzaSyDii31rZF5n1bETdkf0OKuuTny-O1sesfk',
               onSelect: (place) => setState(() => placePickerValue = place),
               defaultText: 'Añadir ubicacion',
               icon: Icon(
@@ -240,6 +241,16 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                   await SocialPostsRecord.collection
                       .doc()
                       .set(socialPostsCreateData);
+
+                  final locationPostsCreateData = createLocationPostsRecordData(
+                    postCreated: getCurrentTimestamp,
+                    postLocation: placePickerValue.city,
+                    postUser: currentUserReference,
+                    postUserImage: currentUserPhoto,
+                  );
+                  await LocationPostsRecord.collection
+                      .doc()
+                      .set(locationPostsCreateData);
                   Navigator.pop(context);
                 } finally {
                   setState(() => _loadingButton = false);

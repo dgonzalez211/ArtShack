@@ -113,13 +113,8 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
             child: FFButtonWidget(
-              onPressed: () async {
-                setState(() => _loadingButton = true);
-                try {
-                  Navigator.pop(context);
-                } finally {
-                  setState(() => _loadingButton = false);
-                }
+              onPressed: () {
+                print('Button-Login pressed ...');
               },
               text: 'Guardar',
               options: FFButtonOptions(

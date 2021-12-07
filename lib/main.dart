@@ -28,6 +28,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Stream<ArtShackFirebaseUser> userStream;
   ArtShackFirebaseUser initialUser;
+  bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
@@ -35,6 +36,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     userStream = artShackFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    Future.delayed(
+        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
   }
 
   @override
@@ -55,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: initialUser == null
+      home: initialUser == null || displaySplashImage
           ? Container(
               color: Colors.transparent,
               child: Builder(

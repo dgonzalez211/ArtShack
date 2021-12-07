@@ -12,8 +12,6 @@ class BottomSheetWidget extends StatefulWidget {
 }
 
 class _BottomSheetWidgetState extends State<BottomSheetWidget> {
-  bool _loadingButton = false;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -97,7 +95,6 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                             ),
                             borderRadius: 8,
                           ),
-                          loading: _loadingButton,
                         )
                       ],
                     ),

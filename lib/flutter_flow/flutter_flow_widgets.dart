@@ -36,7 +36,7 @@ class FFButtonOptions {
   final BorderSide borderSide;
 }
 
-class FFButtonWidget extends StatelessWidget {
+class FFButtonWidget extends StatefulWidget {
   const FFButtonWidget({
     Key key,
     @required this.text,
@@ -44,15 +44,22 @@ class FFButtonWidget extends StatelessWidget {
     this.icon,
     this.iconData,
     @required this.options,
-    this.loading = false,
+    this.showLoadingIndicator = true,
   }) : super(key: key);
 
   final String text;
   final Widget icon;
   final IconData iconData;
-  final VoidCallback onPressed;
+  final Function() onPressed;
   final FFButtonOptions options;
-  final bool loading;
+  final bool showLoadingIndicator;
+
+  @override
+  State<FFButtonWidget> createState() => _FFButtonWidgetState();
+}
+
+class _FFButtonWidgetState extends State<FFButtonWidget> {
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,65 +70,83 @@ class FFButtonWidget extends StatelessWidget {
               height: 23,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  options.textStyle.color ?? Colors.white,
+                  widget.options.textStyle.color ?? Colors.white,
                 ),
               ),
             ),
           )
         : AutoSizeText(
-            text,
-            style: options.textStyle,
+            widget.text,
+            style: widget.options.textStyle,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           );
-    if (icon != null || iconData != null) {
+
+    final onPressed = widget.showLoadingIndicator
+        ? () async {
+            if (loading) {
+              return;
+            }
+            setState(() => loading = true);
+            try {
+              await widget.onPressed();
+            } catch (_) {}
+            setState(() => loading = false);
+          }
+        : () => widget.onPressed();
+
+    if (widget.icon != null || widget.iconData != null) {
       textWidget = Flexible(child: textWidget);
       return Container(
-        height: options.height,
-        width: options.width,
+        height: widget.options.height,
+        width: widget.options.width,
         child: RaisedButton.icon(
           icon: Padding(
-            padding: options.iconPadding ?? EdgeInsets.zero,
-            child: icon ??
+            padding: widget.options.iconPadding ?? EdgeInsets.zero,
+            child: widget.icon ??
                 FaIcon(
-                  iconData,
-                  size: options.iconSize,
-                  color: options.iconColor ?? options.textStyle.color,
+                  widget.iconData,
+                  size: widget.options.iconSize,
+                  color: widget.options.iconColor ??
+                      widget.options.textStyle.color,
                 ),
           ),
           label: textWidget,
-          onPressed: loading ? () {} : onPressed,
+          onPressed: onPressed,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(options.borderRadius),
-            side: options.borderSide ?? BorderSide.none,
+            borderRadius: BorderRadius.circular(widget.options.borderRadius),
+            side: widget.options.borderSide ?? BorderSide.none,
           ),
-          color: options.color,
-          colorBrightness: ThemeData.estimateBrightnessForColor(options.color),
-          textColor: options.textStyle.color,
-          disabledColor: options.disabledColor,
-          disabledTextColor: options.disabledTextColor,
-          elevation: options.elevation,
-          splashColor: options.splashColor,
+          color: widget.options.color,
+          colorBrightness:
+              ThemeData.estimateBrightnessForColor(widget.options.color),
+          textColor: widget.options.textStyle.color,
+          disabledColor: widget.options.disabledColor,
+          disabledTextColor: widget.options.disabledTextColor,
+          elevation: widget.options.elevation,
+          splashColor: widget.options.splashColor,
         ),
       );
     }
 
     return Container(
-      height: options.height,
-      width: options.width,
+      height: widget.options.height,
+      width: widget.options.width,
       child: RaisedButton(
         onPressed: onPressed,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(options.borderRadius ?? 28),
-          side: options.borderSide ?? BorderSide.none,
+          borderRadius:
+              BorderRadius.circular(widget.options.borderRadius ?? 28),
+          side: widget.options.borderSide ?? BorderSide.none,
         ),
-        textColor: options.textStyle.color,
-        color: options.color,
-        colorBrightness: ThemeData.estimateBrightnessForColor(options.color),
-        disabledColor: options.disabledColor,
-        disabledTextColor: options.disabledTextColor,
-        padding: options.padding,
-        elevation: options.elevation,
+        textColor: widget.options.textStyle.color,
+        color: widget.options.color,
+        colorBrightness:
+            ThemeData.estimateBrightnessForColor(widget.options.color),
+        disabledColor: widget.options.disabledColor,
+        disabledTextColor: widget.options.disabledTextColor,
+        padding: widget.options.padding,
+        elevation: widget.options.elevation,
         child: textWidget,
       ),
     );

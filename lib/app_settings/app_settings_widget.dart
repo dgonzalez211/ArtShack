@@ -14,7 +14,6 @@ class AppSettingsWidget extends StatefulWidget {
 }
 
 class _AppSettingsWidgetState extends State<AppSettingsWidget> {
-  bool _loadingButton = false;
   bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -134,7 +133,6 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
                 ),
                 borderRadius: 30,
               ),
-              loading: _loadingButton,
             ),
           )
         ],

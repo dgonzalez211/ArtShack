@@ -18,8 +18,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
   bool passwordVisibility;
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -230,30 +228,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        setState(() => _loadingButton1 = true);
-                        try {
-                          if (!formKey.currentState.validate()) {
-                            return;
-                          }
-                          final user = await signInWithEmail(
-                            context,
-                            emailTextController.text,
-                            passwordTextController.text,
-                          );
-                          if (user == null) {
-                            return;
-                          }
-
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'mainScreen'),
-                            ),
-                          );
-                        } finally {
-                          setState(() => _loadingButton1 = false);
+                        if (!formKey.currentState.validate()) {
+                          return;
                         }
+                        final user = await signInWithEmail(
+                          context,
+                          emailTextController.text,
+                          passwordTextController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
+
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                NavBarPage(initialPage: 'mainScreen'),
+                          ),
+                        );
                       },
                       text: 'Iniciar sesion',
                       options: FFButtonOptions(
@@ -268,7 +261,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         borderRadius: 30,
                       ),
-                      loading: _loadingButton1,
                     ),
                   ),
                   Padding(
@@ -286,20 +278,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            setState(() => _loadingButton2 = true);
-                            try {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 150),
-                                  reverseDuration: Duration(milliseconds: 150),
-                                  child: RegisterWidget(),
-                                ),
-                              );
-                            } finally {
-                              setState(() => _loadingButton2 = false);
-                            }
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 150),
+                                reverseDuration: Duration(milliseconds: 150),
+                                child: RegisterWidget(),
+                              ),
+                            );
                           },
                           text: 'Crear cuenta',
                           options: FFButtonOptions(
@@ -317,7 +304,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                             ),
                             borderRadius: 12,
                           ),
-                          loading: _loadingButton2,
                         )
                       ],
                     ),

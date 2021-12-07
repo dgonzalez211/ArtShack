@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -116,6 +117,15 @@ extension DateTimeComparisonOperators on DateTime {
   bool operator >(DateTime other) => isAfter(other);
   bool operator <=(DateTime other) => this < other || isAtSameMomentAs(other);
   bool operator >=(DateTime other) => this > other || isAtSameMomentAs(other);
+}
+
+dynamic getJsonField(dynamic response, String jsonPath) {
+  final field = JsonPath(jsonPath).read(response);
+  return field.isNotEmpty
+      ? field.length > 1
+          ? field.map((f) => f.value).toList()
+          : field.first.value
+      : null;
 }
 
 bool get isAndroid => !kIsWeb && Platform.isAndroid;

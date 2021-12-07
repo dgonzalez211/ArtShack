@@ -20,7 +20,6 @@ class MyProfileWidget extends StatefulWidget {
 
 class _MyProfileWidgetState extends State<MyProfileWidget> {
   String uploadedFileUrl = '';
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -277,22 +276,16 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              setState(() => _loadingButton = true);
-                              try {
-                                await signOut();
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: LoginWidget(),
-                                  ),
-                                );
-                              } finally {
-                                setState(() => _loadingButton = false);
-                              }
+                              await signOut();
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 300),
+                                  reverseDuration: Duration(milliseconds: 300),
+                                  child: LoginWidget(),
+                                ),
+                              );
                             },
                             text: 'Log Out',
                             options: FFButtonOptions(
@@ -310,7 +303,6 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               ),
                               borderRadius: 30,
                             ),
-                            loading: _loadingButton,
                           )
                         ],
                       ),

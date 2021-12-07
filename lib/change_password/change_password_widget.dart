@@ -14,7 +14,6 @@ class ChangePasswordWidget extends StatefulWidget {
 
 class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
   TextEditingController emailAddressController;
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -115,26 +114,21 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  setState(() => _loadingButton = true);
-                  try {
-                    if (emailAddressController.text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Email required!',
-                          ),
+                  if (emailAddressController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Email required!',
                         ),
-                      );
-                      return;
-                    }
-                    await resetPassword(
-                      email: emailAddressController.text,
-                      context: context,
+                      ),
                     );
-                    Navigator.pop(context);
-                  } finally {
-                    setState(() => _loadingButton = false);
+                    return;
                   }
+                  await resetPassword(
+                    email: emailAddressController.text,
+                    context: context,
+                  );
+                  Navigator.pop(context);
                 },
                 text: 'Send Reset Link',
                 options: FFButtonOptions(
@@ -154,7 +148,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                   ),
                   borderRadius: 40,
                 ),
-                loading: _loadingButton,
               ),
             )
           ],

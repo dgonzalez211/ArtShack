@@ -64,7 +64,16 @@ String get currentUserPhoto =>
 String get currentPhoneNumber =>
     currentUserDocument?.phoneNumber ?? currentUser?.user?.phoneNumber ?? '';
 
-bool get currentUserEmailVerified => currentUser?.user?.emailVerified ?? false;
+bool get currentUserEmailVerified {
+  // Reloads the user when checking in order to get the most up to date
+  // email verified status.
+  if (currentUser?.user != null && !currentUser.user.emailVerified) {
+    currentUser.user
+        .reload()
+        .then((_) => currentUser.user = FirebaseAuth.instance.currentUser);
+  }
+  return currentUser?.user?.emailVerified ?? false;
+}
 
 // Set when using phone verification (after phone number is provided).
 String _phoneAuthVerificationCode;

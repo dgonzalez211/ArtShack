@@ -30,7 +30,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
-  bool _loadingButton = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -301,23 +300,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                setState(() => _loadingButton = true);
-                                try {
-                                  if (!formKey.currentState.validate()) {
-                                    return;
-                                  }
-                                  final usersUpdateData = createUsersRecordData(
-                                    email: textController1.text,
-                                    displayName: textController2?.text ?? '',
-                                    photoUrl: uploadedFileUrl,
-                                    userRole: textController3?.text ?? '',
-                                  );
-                                  await editProfileUsersRecord.reference
-                                      .update(usersUpdateData);
-                                  Navigator.pop(context);
-                                } finally {
-                                  setState(() => _loadingButton = false);
+                                if (!formKey.currentState.validate()) {
+                                  return;
                                 }
+                                final usersUpdateData = createUsersRecordData(
+                                  email: textController1.text,
+                                  displayName: textController2?.text ?? '',
+                                  photoUrl: uploadedFileUrl,
+                                  userRole: textController3?.text ?? '',
+                                );
+                                await editProfileUsersRecord.reference
+                                    .update(usersUpdateData);
+                                Navigator.pop(context);
                               },
                               text: 'Save Changes',
                               options: FFButtonOptions(
@@ -336,7 +330,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 ),
                                 borderRadius: 40,
                               ),
-                              loading: _loadingButton,
                             ),
                           )
                         ],

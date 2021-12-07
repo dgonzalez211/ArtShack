@@ -12,9 +12,6 @@ class BottomSheet1Widget extends StatefulWidget {
 }
 
 class _BottomSheet1WidgetState extends State<BottomSheet1Widget> {
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -130,7 +127,6 @@ class _BottomSheet1WidgetState extends State<BottomSheet1Widget> {
                         ),
                         borderRadius: 8,
                       ),
-                      loading: _loadingButton1,
                     ),
                     FFButtonWidget(
                       onPressed: () {
@@ -153,7 +149,6 @@ class _BottomSheet1WidgetState extends State<BottomSheet1Widget> {
                         ),
                         borderRadius: 8,
                       ),
-                      loading: _loadingButton2,
                     )
                   ],
                 ),

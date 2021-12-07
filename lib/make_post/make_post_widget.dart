@@ -2,13 +2,10 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/place.dart';
 import '../flutter_flow/upload_media.dart';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,15 +19,15 @@ class MakePostWidget extends StatefulWidget {
 
 class _MakePostWidgetState extends State<MakePostWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController;
-  var placePickerValue = FFPlace();
-  bool _loadingButton = false;
+  TextEditingController textController1;
+  TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
   }
 
   @override
@@ -145,7 +142,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                           children: [
                             Expanded(
                               child: TextFormField(
-                                controller: textController,
+                                controller: textController1,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   hintText: 'Descripcion....',
@@ -193,35 +190,45 @@ class _MakePostWidgetState extends State<MakePostWidget> {
               )
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-            child: FlutterFlowPlacePicker(
-              iOSGoogleMapsApiKey: 'AIzaSyAh5bIsHa9DEwRZPS2NLokt5pWcxsm1yfE',
-              androidGoogleMapsApiKey:
-                  'AIzaSyBVtJLkes0trsNZa0c1PAxQC2AG-k7AD7k',
-              webGoogleMapsApiKey: 'AIzaSyDii31rZF5n1bETdkf0OKuuTny-O1sesfk',
-              onSelect: (place) => setState(() => placePickerValue = place),
-              defaultText: 'Añadir ubicacion',
-              icon: Icon(
-                Icons.place,
-                color: Color(0xFF95A1AC),
-                size: 16,
-              ),
-              buttonOptions: FFButtonOptions(
-                width: double.infinity,
-                height: 50,
-                color: Colors.white,
-                textStyle: FlutterFlowTheme.subtitle2.override(
+          Expanded(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+              child: TextFormField(
+                controller: textController2,
+                obscureText: false,
+                decoration: InputDecoration(
+                  hintText: 'Ubicacion',
+                  hintStyle: FlutterFlowTheme.bodyText2.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Color(0xFF8B97A2),
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFDBE2E7),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFDBE2E7),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  contentPadding:
+                      EdgeInsetsDirectional.fromSTEB(20, 32, 20, 12),
+                ),
+                style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Lexend Deca',
-                  color: Color(0xFF95A1AC),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF090F13),
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
                 ),
-                borderSide: BorderSide(
-                  color: Color(0xFFDBE2E7),
-                  width: 2,
-                ),
-                borderRadius: 8,
+                textAlign: TextAlign.start,
+                maxLines: 1,
               ),
             ),
           ),
@@ -229,32 +236,27 @@ class _MakePostWidgetState extends State<MakePostWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                setState(() => _loadingButton = true);
-                try {
-                  final socialPostsCreateData = createSocialPostsRecordData(
-                    postCreated: getCurrentTimestamp,
-                    postImage: uploadedFileUrl,
-                    postDescription: textController.text,
-                    postUserImage: currentUserPhoto,
-                    postUser: currentUserReference,
-                  );
-                  await SocialPostsRecord.collection
-                      .doc()
-                      .set(socialPostsCreateData);
+                final socialPostsCreateData = createSocialPostsRecordData(
+                  postCreated: getCurrentTimestamp,
+                  postImage: uploadedFileUrl,
+                  postDescription: textController2.text,
+                  postUserImage: currentUserPhoto,
+                  postUser: currentUserReference,
+                );
+                await SocialPostsRecord.collection
+                    .doc()
+                    .set(socialPostsCreateData);
 
-                  final locationPostsCreateData = createLocationPostsRecordData(
-                    postCreated: getCurrentTimestamp,
-                    postLocation: placePickerValue.city,
-                    postUser: currentUserReference,
-                    postUserImage: currentUserPhoto,
-                  );
-                  await LocationPostsRecord.collection
-                      .doc()
-                      .set(locationPostsCreateData);
-                  Navigator.pop(context);
-                } finally {
-                  setState(() => _loadingButton = false);
-                }
+                final locationPostsCreateData = createLocationPostsRecordData(
+                  postCreated: getCurrentTimestamp,
+                  postLocation: textController2.text,
+                  postUser: currentUserReference,
+                  postUserImage: currentUserPhoto,
+                );
+                await LocationPostsRecord.collection
+                    .doc()
+                    .set(locationPostsCreateData);
+                Navigator.pop(context);
               },
               text: 'Publicar',
               options: FFButtonOptions(
@@ -274,7 +276,6 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                 ),
                 borderRadius: 15,
               ),
-              loading: _loadingButton,
             ),
           )
         ],

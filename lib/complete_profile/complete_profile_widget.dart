@@ -22,7 +22,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   TextEditingController imageURLController;
   TextEditingController displayNameController;
   TextEditingController yourTitleController;
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -252,27 +251,22 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  setState(() => _loadingButton = true);
-                  try {
-                    final usersUpdateData = createUsersRecordData(
-                      photoUrl: valueOrDefault<String>(
-                        imageURLController.text,
-                        'https://image.flaticon.com/icons/png/512/3135/3135715.png',
-                      ),
-                      displayName: displayNameController.text,
-                      userRole: yourTitleController.text,
-                    );
-                    await currentUserReference.update(usersUpdateData);
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'mainScreen'),
-                      ),
-                    );
-                  } finally {
-                    setState(() => _loadingButton = false);
-                  }
+                  final usersUpdateData = createUsersRecordData(
+                    photoUrl: valueOrDefault<String>(
+                      imageURLController.text,
+                      'https://image.flaticon.com/icons/png/512/3135/3135715.png',
+                    ),
+                    displayName: displayNameController.text,
+                    userRole: yourTitleController.text,
+                  );
+                  await currentUserReference.update(usersUpdateData);
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NavBarPage(initialPage: 'mainScreen'),
+                    ),
+                  );
                 },
                 text: 'Guardar',
                 options: FFButtonOptions(
@@ -292,7 +286,6 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   ),
                   borderRadius: 40,
                 ),
-                loading: _loadingButton,
               ),
             )
           ],

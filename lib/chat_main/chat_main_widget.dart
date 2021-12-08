@@ -35,7 +35,6 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
             ),
           );
         }
-        final chatMainUsersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(

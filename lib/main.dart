@@ -1,17 +1,16 @@
+import 'package:art_shack/login/login_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'auth/firebase_user_provider.dart';
-import 'auth/auth_util.dart';
 
-import '../flutter_flow/flutter_flow_theme.dart';
-import 'package:art_shack/login/login_widget.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
+import 'app_settings/app_settings_widget.dart';
+import 'auth/auth_util.dart';
+import 'auth/firebase_user_provider.dart';
+import 'chat_main/chat_main_widget.dart';
 import 'main_screen/main_screen_widget.dart';
 import 'my_profile/my_profile_widget.dart';
-import 'chat_main/chat_main_widget.dart';
-import 'app_settings/app_settings_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:prefs/prefs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Stream<ArtShackFirebaseUser> userStream;
   ArtShackFirebaseUser initialUser;
+  Future<SharedPreferences> prefs;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
@@ -38,12 +38,14 @@ class _MyAppState extends State<MyApp> {
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+    prefs = SharedPreferences.getInstance();
+    Prefs.init();
   }
 
   @override
   void dispose() {
     authUserSub.cancel();
-
+    Prefs.dispose();
     super.dispose();
   }
 

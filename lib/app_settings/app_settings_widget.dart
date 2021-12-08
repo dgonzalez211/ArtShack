@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:prefs/prefs.dart';
 
 class AppSettingsWidget extends StatefulWidget {
   const AppSettingsWidget({Key key}) : super(key: key);
@@ -82,8 +82,10 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
             child: SwitchListTile.adaptive(
               value: switchListTileValue ??= false,
-              onChanged: (newValue) =>
-                  setState(() => switchListTileValue = newValue),
+              onChanged: (newValue) => setState(() {
+                switchListTileValue = newValue;
+                Prefs.setBool("dark_mode_enabled", newValue);
+              }),
               title: Text(
                 'Modo oscuro',
                 style: FlutterFlowTheme.title3.override(

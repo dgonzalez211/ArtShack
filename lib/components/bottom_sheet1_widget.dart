@@ -1,8 +1,7 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 
 class BottomSheet1Widget extends StatefulWidget {
   const BottomSheet1Widget({Key key}) : super(key: key);

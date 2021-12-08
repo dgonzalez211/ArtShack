@@ -1,12 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+
 import '../auth/auth_util.dart';
 import '../complete_profile/complete_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RegisterWidget extends StatefulWidget {
   const RegisterWidget({Key key}) : super(key: key);

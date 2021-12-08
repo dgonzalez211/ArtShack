@@ -14,6 +14,8 @@ class MakePostWidget extends StatefulWidget {
 
   @override
   _MakePostWidgetState createState() => _MakePostWidgetState();
+
+  bool isNewPost(MakePostWidget post) {}
 }
 
 class _MakePostWidgetState extends State<MakePostWidget> {

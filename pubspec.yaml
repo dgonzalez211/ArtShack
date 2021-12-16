@@ -37,6 +37,7 @@ dependencies:
   firebase_core: 1.10.0
   firebase_storage: 10.1.0
   font_awesome_flutter: 8.11.0
+  flutter_google_places: 0.3.0
   google_fonts: 2.1.0
   google_sign_in: 4.5.9
   image_picker: 0.8.4+4

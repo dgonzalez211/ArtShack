@@ -1,34 +1,35 @@
-import 'package:flutter/material.dart';
-
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/place.dart';
 import '../flutter_flow/upload_media.dart';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MakePostWidget extends StatefulWidget {
   const MakePostWidget({Key key}) : super(key: key);
 
   @override
   _MakePostWidgetState createState() => _MakePostWidgetState();
-
-  bool isNewPost(MakePostWidget post) {}
 }
 
 class _MakePostWidgetState extends State<MakePostWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  TextEditingController textController2;
+  TextEditingController textController;
+  var placePickerValue = FFPlace();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
@@ -63,7 +64,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                 Navigator.pop(context);
               },
             ),
-          )
+          ),
         ],
         centerTitle: false,
         elevation: 0,
@@ -143,7 +144,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                           children: [
                             Expanded(
                               child: TextFormField(
-                                controller: textController1,
+                                controller: textController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   hintText: 'Descripcion....',
@@ -181,56 +182,40 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                                 textAlign: TextAlign.start,
                                 maxLines: 4,
                               ),
-                            )
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-              child: TextFormField(
-                controller: textController2,
-                obscureText: false,
-                decoration: InputDecoration(
-                  hintText: 'Ubicacion',
-                  hintStyle: FlutterFlowTheme.bodyText2.override(
-                    fontFamily: 'Lexend Deca',
-                    color: Color(0xFF8B97A2),
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFFDBE2E7),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFFDBE2E7),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20, 32, 20, 12),
-                ),
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Lexend Deca',
-                  color: Color(0xFF090F13),
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
-                textAlign: TextAlign.start,
-                maxLines: 1,
+          FlutterFlowPlacePicker(
+            iOSGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
+            androidGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
+            webGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
+            onSelect: (place) => setState(() => placePickerValue = place),
+            defaultText: 'Select Location',
+            icon: Icon(
+              Icons.place,
+              color: Colors.white,
+              size: 16,
+            ),
+            buttonOptions: FFButtonOptions(
+              width: 200,
+              height: 40,
+              color: FlutterFlowTheme.primaryColor,
+              textStyle: FlutterFlowTheme.subtitle2.override(
+                fontFamily: 'Lexend Deca',
+                color: Colors.white,
               ),
+              borderSide: BorderSide(
+                color: Colors.transparent,
+                width: 1,
+              ),
+              borderRadius: 12,
             ),
           ),
           Padding(
@@ -240,7 +225,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                 final socialPostsCreateData = createSocialPostsRecordData(
                   postCreated: getCurrentTimestamp,
                   postImage: uploadedFileUrl,
-                  postDescription: textController2.text,
+                  postDescription: textController.text,
                   postUserImage: currentUserPhoto,
                   postUser: currentUserReference,
                 );
@@ -250,7 +235,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
 
                 final locationPostsCreateData = createLocationPostsRecordData(
                   postCreated: getCurrentTimestamp,
-                  postLocation: textController2.text,
+                  postLocation: placePickerValue.city,
                   postUser: currentUserReference,
                   postUserImage: currentUserPhoto,
                 );
@@ -278,7 +263,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
                 borderRadius: 15,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

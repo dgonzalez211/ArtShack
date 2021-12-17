@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import '../register/register_widget.dart';
+import 'package:prefs/prefs.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key key}) : super(key: key);
@@ -31,6 +32,10 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
+    Image background = darkMode
+        ? Image.asset('assets/images/background_light.png')
+        : Image.asset('assets/images/background_dark.png');
     return Form(
       key: formKey,
       child: Scaffold(
@@ -45,9 +50,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               color: Color(0x19444D59),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: Image.asset(
-                  'assets/images/Login_Frame.png',
-                ).image,
+                image: background.image,
               ),
             ),
             alignment: AlignmentDirectional(0, 0),
@@ -85,7 +88,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                     width: 330,
                     height: 250,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      //color: Color(0xFF14181B),
+                      color:
+                          darkMode ? FlutterFlowTheme.background : Colors.white,
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 4,

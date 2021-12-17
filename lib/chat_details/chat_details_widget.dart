@@ -1,3 +1,5 @@
+import 'package:prefs/prefs.dart';
+
 import '../backend/backend.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -25,6 +27,7 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -273,7 +276,8 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
               ? FFChatPage(
                   chatInfo: snapshot.data,
                   allowImages: true,
-                  backgroundColor: Colors.white,
+                  backgroundColor:
+                      darkMode ? FlutterFlowTheme.background : Colors.white,
                   timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
                   currentUserBoxDecoration: BoxDecoration(
                     color: FlutterFlowTheme.dark900,

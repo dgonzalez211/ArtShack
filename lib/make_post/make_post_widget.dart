@@ -1,3 +1,5 @@
+import 'package:prefs/prefs.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
@@ -34,6 +36,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -69,7 +72,7 @@ class _MakePostWidgetState extends State<MakePostWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: darkMode ? FlutterFlowTheme.background : Colors.white,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:prefs/prefs.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -24,6 +25,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return StreamBuilder<UsersRecord>(
       stream: UsersRecord.getDocument(currentUserReference),
       builder: (context, snapshot) {
@@ -42,7 +44,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
         final myProfileUsersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: Colors.white,
+          backgroundColor:
+              darkMode ? FlutterFlowTheme.background : Colors.white,
           body: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -214,7 +217,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             width: MediaQuery.of(context).size.width,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: darkMode
+                                  ? FlutterFlowTheme.background
+                                  : Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                   color: Color(0x00090F13),

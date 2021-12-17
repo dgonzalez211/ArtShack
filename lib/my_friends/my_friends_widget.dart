@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:prefs/prefs.dart';
 
 import '../backend/backend.dart';
 import '../chat_details/chat_details_widget.dart';
@@ -19,6 +20,7 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -49,7 +51,7 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: darkMode ? FlutterFlowTheme.background : Colors.white,
       body: StreamBuilder<List<UsersRecord>>(
         stream: queryUsersRecord(
           queryBuilder: (usersRecord) => usersRecord.orderBy('display_name'),

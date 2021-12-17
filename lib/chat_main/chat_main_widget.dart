@@ -1,3 +1,5 @@
+import 'package:prefs/prefs.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_details/chat_details_widget.dart';
@@ -35,6 +37,7 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
             ),
           );
         }
+        bool darkMode = Prefs.getBool("dark_mode_enabled");
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
@@ -48,7 +51,8 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
             centerTitle: false,
             elevation: 4,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor:
+              darkMode ? FlutterFlowTheme.background : Colors.white,
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
               await Navigator.push(
@@ -150,7 +154,9 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
                                       .contains(currentUserReference),
                                   userName: chatUser?.displayName ?? '',
                                   userProfilePic: chatUser?.photoUrl ?? '',
-                                  color: Colors.white,
+                                  color: darkMode
+                                      ? FlutterFlowTheme.background
+                                      : Colors.white,
                                   unreadColor: FlutterFlowTheme.tertiary,
                                   titleTextStyle: GoogleFonts.getFont(
                                     'Lexend Deca',

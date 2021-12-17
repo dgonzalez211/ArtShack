@@ -11,6 +11,7 @@ class FlutterFlowTheme {
   static const Color dark900 = Color(0xFF090F13);
   static const Color background = Color(0xFF14181B);
   static const Color grayIcon = Color(0xFF95A1AC);
+  // static const Color tertiaryColor = Color(0xFFFFFFFF);
   static const Color tertiary = Color(0xFF39D2C0);
 
   String primaryFontFamily = 'Poppins';

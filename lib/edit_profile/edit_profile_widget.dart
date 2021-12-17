@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:prefs/prefs.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -59,6 +60,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             );
           }
           final editProfileUsersRecord = snapshot.data;
+          bool darkMode = Prefs.getBool("dark_mode_enabled");
           return Scaffold(
             key: scaffoldKey,
             appBar: AppBar(
@@ -82,7 +84,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               centerTitle: false,
               elevation: 0,
             ),
-            backgroundColor: Colors.white,
+            backgroundColor:
+                darkMode ? FlutterFlowTheme.background : Colors.white,
             body: SafeArea(
               child: Column(
                 mainAxisSize: MainAxisSize.max,

@@ -7,7 +7,9 @@ import '../main.dart';
 import 'package:prefs/prefs.dart';
 
 class AppSettingsWidget extends StatefulWidget {
-  const AppSettingsWidget({Key key}) : super(key: key);
+  final VoidCallback callback;
+
+  const AppSettingsWidget({Key key, this.callback}) : super(key: key);
 
   @override
   _AppSettingsWidgetState createState() => _AppSettingsWidgetState();
@@ -17,8 +19,13 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
   bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  refresh() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -55,7 +62,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: darkMode ? FlutterFlowTheme.background : Colors.white,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -81,7 +88,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
             child: SwitchListTile.adaptive(
-              value: switchListTileValue ??= false,
+              value: darkMode,
               onChanged: (newValue) => setState(() {
                 switchListTileValue = newValue;
                 Prefs.setBool("dark_mode_enabled", newValue);
@@ -115,7 +122,10 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
             child: FFButtonWidget(
               onPressed: () {
-                print('Button-Login pressed ...');
+                bool darkMode = Prefs.getBool("dark_mode_enabled");
+                if (darkMode) {
+                  widget.callback();
+                }
               },
               text: 'Guardar',
               options: FFButtonOptions(

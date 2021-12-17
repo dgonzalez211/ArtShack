@@ -1,3 +1,5 @@
+import 'package:prefs/prefs.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -18,6 +20,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return StreamBuilder<UsersRecord>(
       stream: UsersRecord.getDocument(currentUserReference),
       builder: (context, snapshot) {
@@ -36,7 +39,8 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         final mainScreenUsersRecord = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: Colors.white,
+          backgroundColor:
+              darkMode ? FlutterFlowTheme.background : Colors.white,
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
               await Navigator.push(
@@ -64,7 +68,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                 width: MediaQuery.of(context).size.width,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: darkMode ? FlutterFlowTheme.background : Colors.white,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -158,7 +162,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                color: Color(0xFFF1F4F8),
+                                color: darkMode
+                                    ? FlutterFlowTheme.background
+                                    : Color(0xFFF1F4F8),
                               ),
                               child: StreamBuilder<List<SocialPostsRecord>>(
                                 stream: querySocialPostsRecord(
@@ -200,7 +206,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                     .width *
                                                 0.96,
                                             decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: darkMode
+                                                  ? FlutterFlowTheme.background
+                                                  : Colors.white,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 4,
@@ -343,7 +351,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                 Divider(
                                                   height: 3,
                                                   thickness: 1,
-                                                  color: Color(0xFFE1E4E5),
+                                                  color: darkMode
+                                                      ? Color(0xB1B1B1)
+                                                      : Color(0xFFE1E4E5),
                                                 )
                                               ],
                                             ),
@@ -359,7 +369,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                               width: 100,
                               height: 100,
                               decoration: BoxDecoration(
-                                color: Color(0xFFF1F5F8),
+                                color: darkMode
+                                    ? FlutterFlowTheme.background
+                                    : Color(0xFFF1F5F8),
                               ),
                               child: StreamBuilder<List<LocationPostsRecord>>(
                                 stream: queryLocationPostsRecord(
@@ -400,7 +412,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                   .width *
                                               0.96,
                                           decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: darkMode
+                                                ? FlutterFlowTheme.background
+                                                : Colors.white,
                                             boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 4,
@@ -519,7 +533,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                               Divider(
                                                 height: 3,
                                                 thickness: 1,
-                                                color: Color(0xFFE1E4E5),
+                                                color: darkMode
+                                                    ? Color(0xB1B1B1)
+                                                    : Color(0xFFE1E4E5),
                                               )
                                             ],
                                           ),

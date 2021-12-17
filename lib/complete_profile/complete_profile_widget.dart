@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prefs/prefs.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -33,6 +34,7 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -51,12 +53,12 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: darkMode ? FlutterFlowTheme.background : Colors.white,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: darkMode ? FlutterFlowTheme.background : Colors.white,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,

@@ -7,6 +7,7 @@ import 'app_settings/app_settings_widget.dart';
 import 'auth/auth_util.dart';
 import 'auth/firebase_user_provider.dart';
 import 'chat_main/chat_main_widget.dart';
+import 'flutter_flow/flutter_flow_theme.dart';
 import 'main_screen/main_screen_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -104,6 +105,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'chatMain': ChatMainWidget(),
       'appSettings': AppSettingsWidget(),
     };
+    bool darkMode = Prefs.getBool("dark_mode_enabled");
     return Scaffold(
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
@@ -145,7 +147,7 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           )
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: darkMode ? FlutterFlowTheme.background : Colors.white,
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
         selectedItemColor: Color(0xFF4B39EF),
         unselectedItemColor: Color(0x98939393),

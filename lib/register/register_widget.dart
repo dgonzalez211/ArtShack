@@ -53,7 +53,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: Image.asset(
-                  'assets/images/Login_Frame.png',
+                  'assets/images/background_light.png',
                 ).image,
               ),
               borderRadius: BorderRadius.circular(5),

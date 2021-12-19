@@ -8,6 +8,7 @@ import 'auth/auth_util.dart';
 import 'auth/firebase_user_provider.dart';
 import 'chat_main/chat_main_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'login/login_widget.dart';
 import 'main_screen/main_screen_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -79,7 +80,9 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  final VoidCallback callback;
+
+  NavBarPage({Key key, this.initialPage, this.callback}) : super(key: key);
 
   final String initialPage;
 
@@ -95,6 +98,10 @@ class _NavBarPageState extends State<NavBarPage> {
   void initState() {
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
+  }
+
+  refresh() {
+    setState(() {});
   }
 
   @override

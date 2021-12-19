@@ -252,7 +252,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       style:
                                           FlutterFlowTheme.subtitle2.override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Colors.black,
+                                        color: darkMode
+                                            ? Colors.white
+                                            : Colors.black,
                                       ),
                                     ),
                                   ),
@@ -296,7 +298,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             options: FFButtonOptions(
                               width: 90,
                               height: 40,
-                              color: Colors.white,
+                              color: darkMode
+                                  ? FlutterFlowTheme.background
+                                  : Colors.white,
                               textStyle: FlutterFlowTheme.bodyText2.override(
                                 fontFamily: 'Lexend Deca',
                                 color: FlutterFlowTheme.primaryColor,

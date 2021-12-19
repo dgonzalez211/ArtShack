@@ -125,6 +125,7 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
                 bool darkMode = Prefs.getBool("dark_mode_enabled");
                 if (darkMode) {
                   widget.callback();
+                  NavBarPage().callback();
                 }
               },
               text: 'Guardar',

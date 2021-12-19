@@ -1,6 +1,10 @@
-import 'package:prefs/prefs.dart';
+import 'dart:convert';
 
+import 'package:geolocator/geolocator.dart';
+import 'package:prefs/prefs.dart';
+import 'package:geocoding/geocoding.dart';
 import '../auth/auth_util.dart';
+import 'package:http/http.dart' as http;
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -8,15 +12,12 @@ import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/place.dart';
 import '../flutter_flow/upload_media.dart';
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MakePostWidget extends StatefulWidget {
-  const MakePostWidget({Key key}) : super(key: key);
+  final VoidCallback callback;
+  const MakePostWidget({Key key, this.callback}) : super(key: key);
 
   @override
   _MakePostWidgetState createState() => _MakePostWidgetState();
@@ -27,11 +28,16 @@ class _MakePostWidgetState extends State<MakePostWidget> {
   TextEditingController textController;
   var placePickerValue = FFPlace();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String city;
 
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
+  }
+
+  refresh() {
+    setState(() {});
   }
 
   @override
@@ -199,8 +205,11 @@ class _MakePostWidgetState extends State<MakePostWidget> {
             iOSGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
             androidGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
             webGoogleMapsApiKey: 'AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg',
-            onSelect: (place) => setState(() => placePickerValue = place),
-            defaultText: 'Select Location',
+            onSelect: (place) {
+              setState(() => placePickerValue = place);
+              widget.callback();
+            },
+            defaultText: "Ubicacion",
             icon: Icon(
               Icons.place,
               color: Colors.white,

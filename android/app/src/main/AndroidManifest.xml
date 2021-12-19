@@ -2,11 +2,12 @@
     package="Kaleo.Chat.app"
     xmlns:tools="http://schemas.android.com/tools">
    <uses-permission android:name="android.permission.INTERNET"/>
-
+   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
-        android:label="art_shack"
+        android:label="Art Shack"
         tools:replace="android:label"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:requestLegacyExternalStorage="true">
 
         <activity
@@ -33,6 +34,8 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
+            <meta-data android:name="com.google.android.geo.API_KEY"
+              android:value="AIzaSyCQaUC_ME4HxAb8ljxRyffB2kBQG83BhWg"/>  
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

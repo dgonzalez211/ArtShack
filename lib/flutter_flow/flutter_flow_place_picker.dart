@@ -56,7 +56,7 @@ class _FFPlacePickerState extends State<FlutterFlowPlacePicker> {
 
   @override
   Widget build(BuildContext context) => FFButtonWidget(
-        text: _selectedPlace ?? widget.defaultText ?? "Search places",
+        text: _selectedPlace ?? widget.defaultText ?? "Seleccionar ubicacion",
         icon: widget.icon,
         onPressed: () async {
           Prediction p = await PlacesAutocomplete.show(

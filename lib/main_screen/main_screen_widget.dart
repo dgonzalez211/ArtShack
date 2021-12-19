@@ -85,7 +85,9 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                 'Bienvenido',
                                 style: FlutterFlowTheme.title1.override(
                                   fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF090F13),
+                                  color: darkMode
+                                      ? Colors.white
+                                      : Color(0xFF090F13),
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -280,8 +282,10 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                                                                   .override(
                                                             fontFamily:
                                                                 'Lexend Deca',
-                                                            color: Color(
-                                                                0xFF151B1E),
+                                                            color: darkMode
+                                                                ? Colors.white
+                                                                : Color(
+                                                                    0xFF151B1E),
                                                             fontSize: 18,
                                                             fontWeight:
                                                                 FontWeight.w500,

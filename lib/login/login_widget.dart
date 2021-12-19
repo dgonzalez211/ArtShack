@@ -34,8 +34,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     bool darkMode = Prefs.getBool("dark_mode_enabled");
     Image background = darkMode
-        ? Image.asset('assets/images/background_light.png')
-        : Image.asset('assets/images/background_dark.png');
+        ? Image.asset('assets/images/background_dark.png')
+        : Image.asset('assets/images/background_light.png');
     return Form(
       key: formKey,
       child: Scaffold(
